@@ -9,8 +9,12 @@
 
 const express = require('express'),
     port = require('./config/config'),
+    mongoose=require('mongoose'),
     app = express()
+
+mongoose.connect('mongodb://localhost:27017/coffe')
 
 
 app.use(express.urlencoded({extended:false}))
 .use(express.json())
+.listen(port)
