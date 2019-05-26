@@ -1,3 +1,3 @@
-const port = process.env.PORT
+const port = process.env.PORT || 8000
 
 module.exports = port
