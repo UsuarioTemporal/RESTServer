@@ -18,6 +18,7 @@ let userSchema = new Schema({
         required:false // no es obligatorio
     },
     role:{
+        type:String,
         default:'USER_ROLE'
     },
     status:{
