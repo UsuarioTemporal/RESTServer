@@ -15,19 +15,26 @@ app.get('/',(req,res)=>{
             role:body.role
         })
     user.save((err,userDB)=>{ // esto puede recibir un callback que es un error o un usuario de la base de datos que es una respuesta que es el usuario que se grabo en mongo
-
-    })
-
-    if(body.name===undefined){
-        res.status(400).json({
-            ok:false,
-            message:'El nombre es necesario'
+        if(err)
+            return res.status(400).json({
+                ok:false,
+                err
+            })
+        res.json({
+            ok:true,
+            user:userDB
         })
-        return
-    }
-    res.json({
-        person:body
     })
+
+    // if(body.name===undefined)
+    //     return res.status(400).json({
+    //         ok:false,
+    //         message:'El nombre es necesario'
+    //     })
+
+    // res.json({
+    //     person:body
+    // })
 })
 
 module.exports=app
