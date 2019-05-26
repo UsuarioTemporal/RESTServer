@@ -10,11 +10,9 @@
  */
 
 const express = require('express'),
-    port = require('./config/config'),
+    {port,print} = require('./config/config'),
     mongoose=require('mongoose'),
-    app = express(),
-    print=console.log
-
+    app = express()
 mongoose.connect('mongodb://localhost:27017/coffe',(err,res)=>{
     if(err) throw err
     print('OK')
