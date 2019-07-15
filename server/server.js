@@ -18,8 +18,10 @@ mongoose.connect('mongodb://localhost:27017/coffe',(err,res)=>{
     print('OK')
 })
 
-
+// estos nos servira para obtener la informacion del post de manera procesada y serializarla en un objeto json 
 app.use(express.urlencoded({extended:false})) 
-.use(express.json()) // esto nos servira para obtener la informacion del post de manera procesada y serializarla en un objeto json 
+.use(express.json()) 
+/////////////////////////////////////////////////////////
+
 app.use(require('./routes/user'))
 .listen(port)
