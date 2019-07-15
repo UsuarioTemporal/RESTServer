@@ -27,16 +27,6 @@ app.get('/',(req,res)=>{
             user:userDB
         })
     })
-
-    // if(body.name===undefined)
-    //     return res.status(400).json({
-    //         ok:false,
-    //         message:'El nombre es necesario'
-    //     })
-
-    // res.json({
-    //     person:body
-    // })
 })
 
 module.exports=app
