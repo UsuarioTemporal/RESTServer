@@ -22,5 +22,22 @@ app.get('/',(req,res)=>{
         })
     })
 })
+.put('/user/:id',(req,res)=>{
+    let id = req.params.id
+    let body = req.body
+    User.findByIdAndUpdate(id,body,{new:true,runValidators:true},(err,userDB)=>{ // el new nos dira que hara un refresh para ver la //
+        //data actualizada y el runValidators para que en la actualizacion tambien tome en cuenta las validaciones de la Schema
+
+        if(err) return res.status(400).json({
+            ok:false,
+            err
+        })
+        res.json({
+            ok:true,
+            user:userDB
+        })
+    })
+        
+})
 
 module.exports=app
