@@ -13,7 +13,8 @@ const express = require('express'),
     {port,print} = require('./config/config'),
     mongoose=require('mongoose'),
     app = express()
-mongoose.connect('mongodb://localhost:27017/coffe',(err,res)=>{
+    mongoose.set('useCreateIndex', true)
+    mongoose.connect('mongodb://localhost:27017/coffe', { useNewUrlParser: true },(err,res)=>{
     if(err) throw err
     print('OK')
 })
