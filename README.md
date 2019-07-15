@@ -11,24 +11,22 @@
 
 ````javascript
 
-    const express = require('express'),
-        app = express()
+   const express = require('express'),
+    app = express()
 
-    app.get('/',(req,res)=>{
-        // body
-
-
-        //params
-
-        //query
+    app.get('/:id',(req,res)=>{
+        res.send('me la pela')
+    //params
+        console.log(req.params) // esto es lo que hace retorna un objeto con los parametros que estamos enviando al servidor
+    //query
+        console.log(req.query) // query params ?
 
     })
     app.post('/',(req,res)=>{
-        //body
+    //body
+        console.log(req.body)
 
-        //params
-
-        //query
+    //query
     })
-
+    app.listen(8000)
 ````
