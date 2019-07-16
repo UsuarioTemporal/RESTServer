@@ -19,12 +19,12 @@ app.get('/user',(req,res)=>{
      * comienzo = 2*5 -5 = 5 + 1 entonces mostrarmos desde 6 hasta 10 
      */
 
-    const {from = 0,limit=5} = req.query
+    const {from = 1,limit=5} = req.query
 
     if(!pattern.test(from)) return res.json({err:`from = ${from} no es un numero`})
     if(!pattern.test(limit)) return res.json({err:`limit = ${limit} no es un numero`})
     User.find({})
-    .skip(+from -1)//esto me dice que se saltara los primeros 2 pero en este caso from
+    .skip(+from - 1 )//esto me dice que se saltara los primeros 2 pero en este caso from
     .limit(+limit)//mostrar los dos que siguen
     .exec((err,users)=>{
         if(err) return res.status(400).json({
