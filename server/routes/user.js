@@ -90,11 +90,14 @@ app.get('/user',(req,res)=>{
 .delete('/user/:id',(req,res)=>{
     let id = req.params.id
 
-    User.findOneAndRemove(id,(err,userDelete)=>{
-        if(err) return res.status(400).json({
+    User.findByIdAndRemove(id,(err,userDelete)=>{
+        // console.log(`${err} ${userDelete===true} `)
+        let validate = err || !userDelete
+        if(validate) return res.status(400).json({
             ok:false,
-            err
+            err : err?err:`No existe el usuario con el id: ${id}`
         })
+        
         res.json({
             ok:true,
             userDelete
