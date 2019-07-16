@@ -5,7 +5,7 @@ const express = require('express'),
     _ = require('underscore'),
     pattern = /^[1-9]+[\d]*$/
 
-app.get('/user',(req,res)=>{
+app.get('/user',(req,res)=>{ // solo mostrara a los usuarios activos es decir los usuarios que tengan el status = true 
 
     // este algorimo se utiliza para la paginacion en BD
     // la paginacion funciona de la siguiente manera
@@ -23,7 +23,7 @@ app.get('/user',(req,res)=>{
     
     if(!pattern.test(from)) return res.json({err:`from = ${from} no es un numero`})
     if(!pattern.test(limit)) return res.json({err:`limit = ${limit} no es un numero`})
-    User.find({},'name status role google') // en el siguiente string se mandaran solos los atributos que queremos enviar al usuario
+    User.find({status:true},'name status role google') // en el siguiente string se mandaran solos los atributos que queremos enviar al usuario
     .skip(+from - 1 )//esto me dice que se saltara los primeros 2 pero en este caso from
     .limit(+limit)//mostrar los dos que siguen
     .exec((err,users)=>{
@@ -31,8 +31,9 @@ app.get('/user',(req,res)=>{
             ok:false,
             err
         })
+        
         //cantidad de registros de mi coleccion
-        User.count({},(err,count)=>{
+        User.count({status:true},(err,count)=>{
             res.json({
                 ok:true,
                 users,
@@ -90,8 +91,25 @@ app.get('/user',(req,res)=>{
 .delete('/user/:id',(req,res)=>{
     let id = req.params.id
 
-    User.findByIdAndRemove(id,(err,userDelete)=>{
-        // console.log(`${err} ${userDelete===true} `)
+    //esto es para eliminarlo no tomando en cuenta la integridad referencial
+    
+    // User.findByIdAndRemove(id,(err,userDelete)=>{
+    //     // console.log(`${err} ${userDelete===true} `)
+    //     let validate = err || !userDelete
+    //     if(validate) return res.status(400).json({
+    //         ok:false,
+    //         err : err?err:`No existe el usuario con el id: ${id}`
+    //     })
+        
+    //     res.json({
+    //         ok:true,
+    //         userDelete
+    //     })
+    // })
+
+
+    //para hacer una simulacion de la integridad referencial lo que se hara es configurar el estado a falso
+    User.findByIdAndUpdate(id,{status:false},{new:true},(err,userDelete)=>{
         let validate = err || !userDelete
         if(validate) return res.status(400).json({
             ok:false,
