@@ -31,7 +31,7 @@ app.get('/user',(req,res)=>{
             ok:false,
             err
         })
-        //cantidad de registros de i coleccion
+        //cantidad de registros de mi coleccion
         User.count({},(err,count)=>{
             res.json({
                 ok:true,
