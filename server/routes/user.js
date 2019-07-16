@@ -31,12 +31,15 @@ app.get('/user',(req,res)=>{
             ok:false,
             err
         })
-        res.json({
-            ok:true,
-            users
+        //cantidad de registros de i coleccion
+        User.count({},(err,count)=>{
+            res.json({
+                ok:true,
+                users,
+                count
+            })
         })
     })
-
 
 })
 .post('/user',(req,res)=>{
