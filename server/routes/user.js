@@ -1,7 +1,9 @@
 const express = require('express'),
     User=require('../models/user'),
     app = express(),
-    bcrypt = require('bcrypt')
+    bcrypt = require('bcrypt'),
+    _ = require('underscore')
+
 app.get('/',(req,res)=>{
     res.json({
         name:'Thom'
@@ -25,7 +27,10 @@ app.get('/',(req,res)=>{
 })
 .put('/user/:id',(req,res)=>{
     let id = req.params.id
-    let body = req.body
+    let body = _.pick(req.body,['name','email','img','role','status'])//en el array se pondra toda las propiedades validas
+    //con esto de arriba ya tenemos validados solos los atributos que si se pueden actualizar
+    
+    // let body = req.body
 
     // Esto podria ser una salida para que no se pueda actualizar el password y google
     //pero imagemos que tenemos muchos mas campos, esto seria una perdida de tiempo
