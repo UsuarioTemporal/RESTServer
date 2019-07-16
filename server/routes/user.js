@@ -4,10 +4,38 @@ const express = require('express'),
     bcrypt = require('bcrypt'),
     _ = require('underscore')
 
-app.get('/',(req,res)=>{
-    res.json({
-        name:'Thom'
+app.get('/user',(req,res)=>{
+
+    // este algorimo se utiliza para la paginacion en BD
+    // la paginacion funciona de la siguiente manera
+    // se necesita de la paginaActual  de cuando en cuanto quieres mostrar (n_datos)
+    /**
+     * comienzo = paginaActual*n_datos - n_datos
+     * Si queremos mostrar de 5 en 5
+     * Y nos encontramos en la primera paginaActual
+     * comienzo = 1*5-5 = 0 + 1(sume este 1 para que comienze en 1 y no en 0 ) entonces mostraremos desde 1 hasta 5 , 
+     * si quermps mostrar la siguiente pagina
+     * comienzo = 2*5 -5 = 5 + 1 entonces mostrarmos desde 6 hasta 10 
+     */
+
+    const {from = 0,to=0} = req.query
+
+    console.log(from)
+    User.find({})
+    .skip(2)//esto me dice que sltara los primeros 2
+    .limit(2)//mostrar los dos que siguen
+    .exec((err,users)=>{
+        if(err) return res.status(400).json({
+            ok:false,
+            err
+        })
+        res.json({
+            ok:true,
+            users
+        })
     })
+
+
 })
 .post('/user',(req,res)=>{
     let body = req.body,
