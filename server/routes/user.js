@@ -23,7 +23,7 @@ app.get('/user',(req,res)=>{
 
     if(!pattern.test(from)) return res.json({err:`from = ${from} no es un numero`})
     if(!pattern.test(limit)) return res.json({err:`limit = ${limit} no es un numero`})
-    User.find({})
+    User.find({},'name status role google') // en el siguiente string se mandaran solos los atributos que queremos enviar al usuario
     .skip(+from - 1 )//esto me dice que se saltara los primeros 2 pero en este caso from
     .limit(+limit)//mostrar los dos que siguen
     .exec((err,users)=>{
