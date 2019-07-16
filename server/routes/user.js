@@ -20,7 +20,7 @@ app.get('/user',(req,res)=>{
      */
 
     const {from = 1,limit=5} = req.query
-
+    
     if(!pattern.test(from)) return res.json({err:`from = ${from} no es un numero`})
     if(!pattern.test(limit)) return res.json({err:`limit = ${limit} no es un numero`})
     User.find({},'name status role google') // en el siguiente string se mandaran solos los atributos que queremos enviar al usuario
@@ -86,6 +86,20 @@ app.get('/user',(req,res)=>{
         })
     })
         
+})
+.delete('/user/:id',(req,res)=>{
+    let id = req.params.id
+
+    User.findOneAndRemove(id,(err,userDelete)=>{
+        if(err) return res.status(400).json({
+            ok:false,
+            err
+        })
+        res.json({
+            ok:true,
+            userDelete
+        })
+    })
 })
 
 module.exports=app
