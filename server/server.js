@@ -9,14 +9,15 @@
  * como un conjunto de fórmulas conocidas como restricciones de integridad
  */
 
+require('./config/config')
+
 const express = require('express'),
-    {port,print} = require('./config/config'),
     mongoose=require('mongoose'),
     app = express()
     mongoose.set('useCreateIndex', true)
-    mongoose.connect('mongodb://localhost:27017/coffe', { useNewUrlParser: true },(err,res)=>{
+    mongoose.connect(process.env.URLDB, { useNewUrlParser: true },(err,res)=>{
     if(err) throw err
-    print('OK')
+    console.log('OK')
 })
 
 // estos nos servira para obtener la informacion del post de manera procesada y serializarla en un objeto json 
@@ -25,4 +26,4 @@ app.use(express.urlencoded({extended:false}))
 /////////////////////////////////////////////////////////
 
 app.use(require('./routes/user'))
-.listen(port)
+.listen(process.env.PORT,()=>`Escuchando en el puerto ${process.env.PORT}`)
