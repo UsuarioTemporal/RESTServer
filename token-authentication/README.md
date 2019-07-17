@@ -89,3 +89,5 @@ El local storage alamacena datos sin fecha de caducidad a diferencia de los cook
 - [***Diferencias de almacenamiento***](https://codepen.io/beaucarnes/pen/KmeRMx)
 - [***Ver alamcenamiento I***](http://js.dokry.com/cul-es-el-tamao-mximo-de-los-valores-de-almacenamiento-local.html)
 - [***Ver alamcenamiento II***](https://www.bit.es/knowledge-center/cookies-vs-localstorage-cual-es-la-mejor-opcion/)
+- [***Ver almacenamiento III***](https://scotch.io/@PratyushB/local-storage-vs-session-storage-vs-cookie)
+- [***Ver almacenamienti IV***](https://ed.team/blog/que-es-y-como-utilizar-localstorage-y-sessionstorage)
