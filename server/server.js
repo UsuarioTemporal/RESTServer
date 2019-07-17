@@ -14,8 +14,8 @@ require('./config/config')
 const express = require('express'),
     mongoose=require('mongoose'),
     app = express()
-    mongoose.set('useCreateIndex', true)
-    mongoose.connect(process.env.URLDB, { useNewUrlParser: true },(err,res)=>{
+
+mongoose.connect(process.env.URLDB,(err,res)=>{
     if(err) throw err
     console.log('OK')
 })
@@ -26,4 +26,4 @@ app.use(express.urlencoded({extended:false}))
 /////////////////////////////////////////////////////////
 
 app.use(require('./routes/user'))
-.listen(process.env.PORT,()=>`Escuchando en el puerto ${process.env.PORT}`)
+app.listen(process.env.PORT,()=>`Escuchando en el puerto ${8080}`)
