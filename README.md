@@ -6,3 +6,7 @@
     > npm start
 
 ````
+
+## **Example**
+
+![GET](img/1.png)
