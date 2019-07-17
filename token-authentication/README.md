@@ -11,4 +11,13 @@ tarea .
   - Payload:Contiene la información que estará en el token
   - Firma:Es algo que le permite al JWT o a los verificadores del JWT si el token es válido
 
-[JWT.io](https://jwt.io/)
+## **Cookies , Session y el Local Storage**
+
+### **Cookie**
+
+.
+
+## ***Referencias***
+
+- [***JWT.io***](https://jwt.io/)
+- [***JWT.io***](https://github.com/MaurickThom/Node.js)
