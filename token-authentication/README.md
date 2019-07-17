@@ -38,7 +38,7 @@ Las cookies son prácticamente una forma conveniente de
 llevar información de una sesión en un sitio web a otra, o 
 entre sesiones en sitios web relacionados, sin tener que 
 cargar una máquina de servidor con grandes cantidades de 
-almacenamiento de datos.Si tuviéramos que almacenar datos 
+almacenamiento de datos. Si tuviéramos que almacenar datos 
 en el servidor sin utilizar cookies, sería difícil 
 recuperar la información de un usuario en particular sin 
 requerir un inicio de sesión en cada visita al sitio web. 
@@ -50,10 +50,42 @@ tiempo arbitrario.
 ## **Diferencias con el  Local Storage**
 
 Las cookies son principalmente par lectura del lado del servidor
-mientras que el local Storage solo puede ser leido del lado del cliente . Ademas de guardas datos , una gran difrencia es el tamaño de datos que se puede alamcenar que es 5MG
+mientras que el local Storage solo puede ser leido del lado del cliente . Ademas de guardas datos , una gran difrencia es el tamaño de datos que se puede alamcenar que es 5MB esto varia dependenciendo del navegador y tambien puede ser personalizado por el usuario
+
+Existe una variante de Local Storage , que permite almacenar datos con
+la garantía de que, cuando el usuario cierre el navegador o cambie de dominio,
+la informacion será borrada automaticamente. Esto es una solucion ideal para los casos en los que solo necesitamos la imformación temporal.
+
+
+````javascript
+
+    //Session Storage
+    const grabarClaveSesion = clave=>{
+        let valor = document.getElementByID('input-temporal').value
+        window.sessionStorage.setItem(clave,value)
+    }
+    const leerClaveSesion = clave=>{
+        let valor = window.sessionStorage.getItem(clave)
+        document.getElementById('valor-temporal').value = valor
+    }
+
+    //Local Storage
+    const grabarClaveLocal = clave=>{
+        let valor = document.getElementById('input-permanente').value
+        window.localStorage.clave=valor
+    }
+    const leerClaveLocal= clave=>{
+        let valor =window.localStorage.clave
+        document.getElementById('valor-permanente').value = valor
+    }
+````
+
+El local storage alamacena datos sin fecha de caducidad a diferencia de los cookies y se borra solo atraves de javascript, o borra la memoria caché del navegador / datos almacenados localmente
 
 ## ***Referencias***
 
 - [***JWT.io***](https://jwt.io/)
 - [***Node.js***](https://github.com/MaurickThom/Node.js)
 - [***Diferencias de almacenamiento***](https://codepen.io/beaucarnes/pen/KmeRMx)
+- [***Ver alamcenamiento I***](http://js.dokry.com/cul-es-el-tamao-mximo-de-los-valores-de-almacenamiento-local.html)
+- [***Ver alamcenamiento II***](https://www.bit.es/knowledge-center/cookies-vs-localstorage-cual-es-la-mejor-opcion/)
