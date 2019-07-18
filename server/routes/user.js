@@ -19,9 +19,9 @@ app.get('/user',verifyToken,(req,res)=>{ // solo mostrara a los usuarios activos
      * si quermps mostrar la siguiente pagina
      * comienzo = 2*5 -5 = 5 + 1 entonces mostrarmos desde 6 hasta 10 
      */
-    return res.json({
-        user:req.userDB
-    })
+    // return res.json({
+    //     user:req.userDB
+    // })
 
     const {from = 1,limit=5} = req.query
     
