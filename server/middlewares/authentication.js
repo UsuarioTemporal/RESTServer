@@ -20,8 +20,23 @@ const verifyToken = (req,res,next)=>{
 
 }
 
+//verifica admin role
+
+const verifyRole = (req,res,next)=>{
+
+    let user = req.userDB
+    if(user.role!=='ADMIN_ROLE') return res.status(401).json({
+        ok:false,
+        err,
+        message:'No tiene permisos para ejecutar esta accion'
+    })
+    next()
+}
+
+
 module.exports = {
-    verifyToken
+    verifyToken,
+    verifyRole
 }
 
 // Los HTTP headers son la parte central de los HTTP requests y responses, y transmiten información acerca del navegador del cliente, 

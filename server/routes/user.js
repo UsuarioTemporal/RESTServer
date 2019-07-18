@@ -3,7 +3,7 @@ const express = require('express'),
     app = express(),
     bcrypt = require('bcrypt'),
     _ = require('underscore'),
-    {verifyToken} = require('../middlewares/authentication'),
+    {verifyToken,verifyRole} = require('../middlewares/authentication'),
     pattern = /^[1-9]+[\d]*$/
 
 app.get('/user',verifyToken,(req,res)=>{ // solo mostrara a los usuarios activos es decir los usuarios que tengan el status = true 
@@ -47,10 +47,11 @@ app.get('/user',verifyToken,(req,res)=>{ // solo mostrara a los usuarios activos
     })
 
 })
-.post('/user',verifyToken,(req,res)=>{
+.post('/user',[verifyToken,verifyRole],(req,res)=>{
     let body = req.body,
         user = new User({...body})
-        user.password=bcrypt.hashSync(body.password,10) // 10 significara el numero de veces que se aplicara este hash
+    
+    user.password=bcrypt.hashSync(body.password,10) // 10 significara el numero de veces que se aplicara este hash
     user.save((err,userDB)=>{ // esto puede recibir un callback que es un error o un usuario de la base de datos que es una respuesta 
     //que es el usuario que se grabo en mongo
         if(err) return res.status(400).json({
@@ -63,7 +64,7 @@ app.get('/user',verifyToken,(req,res)=>{ // solo mostrara a los usuarios activos
         })
     })
 })
-.put('/user/:id',verifyToken,(req,res)=>{
+.put('/user/:id',[verifyToken,verifyRole],(req,res)=>{
     let id = req.params.id
     let body = _.pick(req.body,['name','email','img','role','status'])//en el array se pondra toda las propiedades validas
     //con esto de arriba ya tenemos validados solos los atributos que si se pueden actualizar
@@ -92,7 +93,7 @@ app.get('/user',verifyToken,(req,res)=>{ // solo mostrara a los usuarios activos
     })
         
 })
-.delete('/user/:id',verifyToken,(req,res)=>{
+.delete('/user/:id',[verifyToken,verifyRole],(req,res)=>{
     let id = req.params.id
 
     //esto es para eliminarlo no tomando en cuenta la integridad referencial
