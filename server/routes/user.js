@@ -47,7 +47,7 @@ app.get('/user',verifyToken,(req,res)=>{ // solo mostrara a los usuarios activos
     })
 
 })
-.post('/user',(req,res)=>{
+.post('/user',verifyToken,(req,res)=>{
     let body = req.body,
         user = new User({...body})
         user.password=bcrypt.hashSync(body.password,10) // 10 significara el numero de veces que se aplicara este hash
@@ -63,7 +63,7 @@ app.get('/user',verifyToken,(req,res)=>{ // solo mostrara a los usuarios activos
         })
     })
 })
-.put('/user/:id',(req,res)=>{
+.put('/user/:id',verifyToken,(req,res)=>{
     let id = req.params.id
     let body = _.pick(req.body,['name','email','img','role','status'])//en el array se pondra toda las propiedades validas
     //con esto de arriba ya tenemos validados solos los atributos que si se pueden actualizar
@@ -92,7 +92,7 @@ app.get('/user',verifyToken,(req,res)=>{ // solo mostrara a los usuarios activos
     })
         
 })
-.delete('/user/:id',(req,res)=>{
+.delete('/user/:id',verifyToken,(req,res)=>{
     let id = req.params.id
 
     //esto es para eliminarlo no tomando en cuenta la integridad referencial
