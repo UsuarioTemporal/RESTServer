@@ -3,9 +3,10 @@ const express = require('express'),
     app = express(),
     bcrypt = require('bcrypt'),
     _ = require('underscore'),
+    {verifyToken} = require('../middlewares/authentication'),
     pattern = /^[1-9]+[\d]*$/
 
-app.get('/user',(req,res)=>{ // solo mostrara a los usuarios activos es decir los usuarios que tengan el status = true 
+app.get('/user',verifyToken,(req,res)=>{ // solo mostrara a los usuarios activos es decir los usuarios que tengan el status = true 
 
     // este algorimo se utiliza para la paginacion en BD
     // la paginacion funciona de la siguiente manera
@@ -18,6 +19,9 @@ app.get('/user',(req,res)=>{ // solo mostrara a los usuarios activos es decir lo
      * si quermps mostrar la siguiente pagina
      * comienzo = 2*5 -5 = 5 + 1 entonces mostrarmos desde 6 hasta 10 
      */
+    return res.json({
+        user:req.userDB
+    })
 
     const {from = 1,limit=5} = req.query
     

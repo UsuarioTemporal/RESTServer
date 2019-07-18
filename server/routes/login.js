@@ -29,7 +29,7 @@ app.post('/login',(req,res)=>{
 
         let token = jwt.sign({
             userDB
-        },'este-es-el-seed-desarrollo',{expiresIn:process.env.CADUCIDAD_TOKEN})// 60s * 60min * 24h * 30dias = conversion de mili a dias(30) 
+        },process.env.SEED,{expiresIn:process.env.CADUCIDAD_TOKEN})// 60s * 60min * 24h * 30dias = conversion de mili a dias(30) 
         // la firma(este-es ...) 
         //el token que obtenga debo guardarlo en el local storage por que tenemos que enviarlo de alguna manera para que las
         // peticiones que requiran de autentificacion confirmen este token , si el token no es valido no podrá accesar al servicio 

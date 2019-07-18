@@ -29,4 +29,4 @@ app.use(express.urlencoded({extended:false}))
 app.use(require('./routes/index'))
 
 
-app.listen(process.env.PORT,()=>`Escuchando en el puerto ${8080}`)
+app.listen(process.env.PORT,()=>`Escuchando en el puerto ${process.env.PORT}`)
