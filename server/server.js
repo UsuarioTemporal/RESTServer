@@ -25,5 +25,8 @@ app.use(express.urlencoded({extended:false}))
 .use(express.json()) 
 /////////////////////////////////////////////////////////
 
-app.use(require('./routes/user'))
+// Middleware para la configuracion global de rutas
+app.use(require('./routes/index'))
+
+
 app.listen(process.env.PORT,()=>`Escuchando en el puerto ${8080}`)
