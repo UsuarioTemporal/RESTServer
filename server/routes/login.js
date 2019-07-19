@@ -56,23 +56,79 @@ const verify = async token=> {
         //[CLIENT_ID_1, CLIENT_ID_2, CLIENT_ID_3]
     });
     const payload = ticket.getPayload();
-    console.log(payload.name);
-    console.log(payload.email);
-    console.log(payload.picture);
+    
 
-    const userid = payload['sub'];
+    return {
+        name:payload.name,
+        email:payload.email,
+        img: payload.picture,
+        google:true
+    }
 }
 
-app.post('/google',(req,res)=>{
+app.post('/google',async (req,res)=>{
     let token = req.body.idtoken
 
-    verify(token)
-    .then(data=>console.log(data))
-    .catch(err=>console.log(err))
+    let googleUser = await verify(token)
+            .catch(err=>{
+                return res.status(403).json({
+                    ok:false,
+                    err
+                })
+            })
+    
 
-    res.json({
-        token
+    User.findOne( {email:googleUser.email},(err,userDB)=>{
+        if(err) return res.status(500).json({
+            ok:false,
+            err
+        })
+
+        if(!userDB) {
+            // si el usuario no exite en nuestra base de datos y quiere autenticarse con google
+            let user = new User()
+            user.name= googleUser.name
+            user.email = googleUser.email
+            user.img = googleUser.img
+            user.google = true
+            user.password = bcrypt.hashSync(':)',10)
+            user.save((err,userDB)=>{
+                if(err) return res.status(500).json({
+                    ok:false,
+                    err
+                })
+                let token = jwt.sign({
+                    userDB
+                },process.env.SEED,{expiresIn:process.env.CADUCIDAD_TOKEN})
+                return res.json({
+                    ok:true,
+                    userDB,
+                    token
+                })
+            })
+
+        }
+        
+        //si existe un usuario pero se autentico sin google deberia ser un usuario normal
+        if(!userDB.google) return res.status(400).json({
+            ok:false,
+            err,
+            message:'Debe de usar su autenticacion normal'
+        })
+
+        //otro caso es que sea un usuario autenticado por google y lo que se hara es renovar su token para seguir trabajando
+        let token = jwt.sign({
+            userDB
+        },process.env.SEED,{expiresIn:process.env.CADUCIDAD_TOKEN})
+
+        return res.json({
+            ok:true,
+            userDB,
+            token
+        })
+
     })
+    
 })
 
 module.exports = app
