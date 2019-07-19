@@ -20,6 +20,13 @@ app.post('/login',(req,res)=>{
                 message:'(Usuario) o contraseña incorrectos'
             }
         })
+        
+        if(userDB.google) return res.status(400).json({
+            ok:false,
+            err,
+            message:'Debe autenticarse con el login de google'
+        })
+
         if(!bcrypt.compareSync(body.password,userDB.password)) {
             return res.status(400).json({
                 ok:false,
