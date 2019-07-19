@@ -65,7 +65,7 @@ const verify = async token=> {
     });
     const payload = ticket.getPayload();
     
-
+    
     return {
         name:payload.name,
         email:payload.email,
