@@ -12,7 +12,8 @@ app.post('/login',(req,res)=>{
     User.findOne({email:body.email},(err,userDB)=>{
         if(err) return res.status(500).json({
             ok:false,
-            err
+            err,
+            message:'error en el servidor'
         })
         if(!userDB) return res.status(400).json({
             ok:false,
@@ -80,7 +81,8 @@ app.post('/google',async (req,res)=>{
             .catch(err=>{
                 return res.status(403).json({
                     ok:false,
-                    err
+                    err,
+                    message:'Error en el servidor'
                 })
             })
     
@@ -90,7 +92,6 @@ app.post('/google',async (req,res)=>{
             ok:false,
             err
         })
-
         if(!userDB) {
             // si el usuario no exite en nuestra base de datos y quiere autenticarse con google
             let user = new User()
@@ -113,7 +114,7 @@ app.post('/google',async (req,res)=>{
                     token
                 })
             })
-
+            return
         }
         
         //si existe un usuario pero se autentico sin google deberia ser un usuario normal
