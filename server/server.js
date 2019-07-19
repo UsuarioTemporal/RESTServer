@@ -22,8 +22,11 @@ mongoose.connect(process.env.URLDB,(err,res)=>{
 
 // estos nos servira para obtener la informacion del post de manera procesada y serializarla en un objeto json 
 app.use(express.urlencoded({extended:false})) 
-.use(express.json()) 
+.use(express.json())
 /////////////////////////////////////////////////////////
+
+// habilitar la carpeta public
+app.use(express.static(`${__dirname}/../public`))
 
 // Middleware para la configuracion global de rutas
 app.use(require('./routes/index'))
