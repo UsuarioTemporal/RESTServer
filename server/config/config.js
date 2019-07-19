@@ -15,3 +15,7 @@ process.env.CADUCIDAD_TOKEN = 60*60*24*30*1000
 process.env.SEED = process.env.SEED || 'este-es-el-seed-de-desarrollo-el-de-produccion-nunca-lo-veras-prro-xd' 
 
 process.env.URLDB = urlDB
+
+// google client id
+
+process.env.CLIENT_ID = process.env.CLIENT_ID || '514759179530-63cuogg63i56it82seemodolcri1dv6r.apps.googleusercontent.com'
