@@ -7,7 +7,6 @@ const verifyToken = (req,res,next)=>{
     // res.json({
     //     token
     // })
-
     jwt.verify(token,process.env.SEED,(err,decoded)=>{
         if(err) return res.status(401).json({
             ok:false,
