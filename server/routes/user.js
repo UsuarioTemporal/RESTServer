@@ -58,7 +58,12 @@ app.get('/user',verifyToken,(req,res)=>{ // solo mostrara a los usuarios activos
             ok:false,
             err
         })
-        res.json({
+        if(!userDB) return res.status(400).json({
+            ok:false,
+            err,
+            message:'No se creo el usuario'
+        })
+        return res.json({
             ok:true,
             user:userDB
         })
