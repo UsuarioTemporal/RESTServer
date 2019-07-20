@@ -26,8 +26,9 @@ const verifyRole = (req,res,next)=>{
     let user = req.userDB
     if(user.role!=='ADMIN_ROLE') return res.status(401).json({
         ok:false,
-        err,
-        message:'No tiene permisos para ejecutar esta accion'
+        err:{
+            message:'No tiene permisos para ejecutar esta accion'
+        }
     })
     next()
 }
