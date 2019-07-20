@@ -87,7 +87,7 @@ la informacion será borrada automaticamente. Esto es una solucion ideal para lo
 
 El local storage alamacena datos sin fecha de caducidad a diferencia de los cookies y se borra solo atraves de javascript, o borra la memoria caché del navegador / datos almacenados localmente
 
-## ***Referencias***
+## ***Referencias y/o Fuentes***
 
 - [***JWT.io***](https://jwt.io/)
 - [***Node.js***](https://github.com/MaurickThom/Node.js)
@@ -96,3 +96,5 @@ El local storage alamacena datos sin fecha de caducidad a diferencia de los cook
 - [***Ver alamacenamiento II***](https://www.bit.es/knowledge-center/cookies-vs-localstorage-cual-es-la-mejor-opcion/)
 - [***Ver almacenamiento III***](https://scotch.io/@PratyushB/local-storage-vs-session-storage-vs-cookie)
 - [***Ver almacenamienti IV***](https://ed.team/blog/que-es-y-como-utilizar-localstorage-y-sessionstorage)
+- [***Sesiones vs Tokens I***](https://rstopup.com/sesiones-vs-basada-en-token-de-autenticacion.html)
+- [***Sesiones vs Tokens II***](https://programacionymas.com/blog/jwt-vs-cookies-y-sesiones)
