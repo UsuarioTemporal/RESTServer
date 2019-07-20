@@ -45,6 +45,6 @@ userSchema.methods.toJSON=function(){
     return userObject
 }
 
-userSchema.plugin(uniqueValidator,{message:'{PATH} debe de ser unico'})
+userSchema.plugin(uniqueValidator,{message:'{PATH} debe de ser unico'}) //para agregar un message personalizado
 
 module.exports=mongoose.model('User',userSchema)
