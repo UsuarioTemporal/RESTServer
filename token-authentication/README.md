@@ -10,6 +10,16 @@ si este usuario esta nuestra base de datos mediante un token es decir que API RE
 
 ## **¿Por qué usar tokens?**
 
+Un cliente se autentica con sus credenciales o con sus datos y recibe un session_id(la cual puede ser alamcenada el la cookie o en el session storage) y cada una de las siguientes acciones obtendra otra session_id
+
+Pero esto es solo un indetificador y el servidor es el encargado de todo
+lo demas. En teoria el identificador representa a un usuario.Esto limita
+y/o restringe y es una perdida de escalabilidad en nuestra aplicacion
+ya que el servidor debe almacenar un registro por cada vez que el usuario
+se autentique en el sistema.Ademas hacemos que el backend se encargue de ello y de esta 
+manera si queremos desarrollar una aplicación movil, necesitariamos otro backen 
+diferente, no pudiendo reutilizando.
+
 - Variables de sesión : Muchas aplicaciones de hoy en dia utilizan variables de sesión para<br> manejar la autenticación de los usuarios
 - JWT(JSON Web Token) : Está divido en tres partes :
   - Header: Tiene la información sobre el algoritmo utilizado para la encriptación junto con el tipo de token
@@ -98,3 +108,4 @@ El local storage alamacena datos sin fecha de caducidad a diferencia de los cook
 - [***Ver almacenamienti IV***](https://ed.team/blog/que-es-y-como-utilizar-localstorage-y-sessionstorage)
 - [***Sesiones vs Tokens I***](https://rstopup.com/sesiones-vs-basada-en-token-de-autenticacion.html)
 - [***Sesiones vs Tokens II***](https://programacionymas.com/blog/jwt-vs-cookies-y-sesiones)
+- [***Sesiones vs tokens III***](https://carlosazaustre.es/que-es-la-autenticacion-con-token/)
