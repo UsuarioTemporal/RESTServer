@@ -3,6 +3,11 @@
 Un token puede ser físico o virtual, una serie de caracteres para la realizacion de una
 tarea .
 
+Un usuario desea ingresar a nuestra aplicación entonces para poder realizar
+esta acción necesita logearse para esto mediante el método POST
+envia "codigos" a nuestra API REST que será la encargada de verificar 
+si este usuario esta nuestra base de datos mediante un token es decir que API REST recibirá el token y lo que hara es desifrar para luego enviarselo al BACKEND y ver si este exite o no .
+
 ## **¿Por qué usar tokens?**
 
 - Variables de sesión : Muchas aplicaciones de hoy en dia utilizan variables de sesión para<br> manejar la autenticación de los usuarios
