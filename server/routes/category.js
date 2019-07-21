@@ -6,6 +6,8 @@ const express = require('express'),
 //mostrar todas las categorias
 app.get('/category',verifyToken,(req,res)=>{
     Category.find({})
+    .sort('description')
+    .populate('user','name email') // lo que hara esto identificar si hay algun ObjectId que contenga informacion adicional que luego podemos necesitar mostrar
     .exec((err,categoryDB)=>{
         if(err) return res.status(500).json({
             ok:false,
