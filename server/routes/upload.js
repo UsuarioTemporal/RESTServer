@@ -9,7 +9,7 @@ app.use(fileUpload())
 
 // funcion para la eliminacion de una imagen
 const deleteFile = (nameImg,type)=>{
-    let pathImg = `${__dirname}/../uploads/${type}/${nameImg}`
+    let pathImg = `${__dirname}/../../uploads/${type}/${nameImg}`
     if(fs.existsSync(pathImg)) fs.unlinkSync(pathImg)
 }
 
