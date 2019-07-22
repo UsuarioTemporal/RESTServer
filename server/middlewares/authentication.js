@@ -33,10 +33,26 @@ const verifyRole = (req,res,next)=>{
     next()
 }
 
+//Middleware para verificar token por url
+
+const verifyTokenImg = (req,res,next)=>{
+    const {token} = req.query
+    jwt.verify(token,process.env.SEED,(err,decoded)=>{
+        if(err) return res.status(401).json({
+            ok:false,
+            err,
+            message:'Token no valido'
+        })
+        req.userDB = decoded.userDB
+        next()
+    })
+}
+
 
 module.exports = {
     verifyToken,
-    verifyRole
+    verifyRole,
+    verifyTokenImg
 }
 
 // Los HTTP headers son la parte central de los HTTP requests y responses, y transmiten información acerca del navegador del cliente, 
