@@ -107,5 +107,5 @@ El local storage alamacena datos sin fecha de caducidad a diferencia de los cook
 - [***Ver almacenamiento III***](https://scotch.io/@PratyushB/local-storage-vs-session-storage-vs-cookie)
 - [***Ver almacenamienti IV***](https://ed.team/blog/que-es-y-como-utilizar-localstorage-y-sessionstorage)
 - [***Sesiones vs Tokens I***](https://rstopup.com/sesiones-vs-basada-en-token-de-autenticacion.html)
-- [***Sesiones vs Tokens II***](https://programacionymas.com/blog/jwt-vs-cookies-y-sesiones)
+- [***Sesiones vs Tokens II (Mejor explicación)***](https://programacionymas.com/blog/jwt-vs-cookies-y-sesiones)
 - [***Sesiones vs tokens III***](https://carlosazaustre.es/que-es-la-autenticacion-con-token/)
